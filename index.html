@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>רפואנים בעברית | פורטל הכלים של מחזור 2033</title>
+		<meta
+			name="description"
+			content="פורטל הכלים, האוטומציות והמשאבים של ועד מחזור רפואה - האוניברסיטה העברית בירושלים."
+		/>
+		<meta name="theme-color" content="#4f46e5" />
+
+		<!-- Inline SVG Favicon (matches navbar logo, no extra image file needed) -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%234f46e5'/%3E%3Cstop offset='100%25' stop-color='%2314b8a6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cg transform='translate(14 14) scale(1.5)' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 2v2'/%3E%3Cpath d='M5 2v2'/%3E%3Cpath d='M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1'/%3E%3Cpath d='M8 15a6 6 0 0 0 12 0v-3'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E"
+		/>
+
+		<!-- Google Fonts: Heebo & Assistant -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Tailwind CSS CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<!-- Tailwind Configuration -->
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: {
+					extend: {
+						fontFamily: {
+							sans: [
+								"Heebo",
+								"Assistant",
+								"system-ui",
+								"-apple-system",
+								"sans-serif",
+							],
+						},
+						colors: {
+							brand: {
+								50: "#eef2ff",
+								100: "#e0e7ff",
+								400: "#818cf8",
+								500: "#6366f1",
+								600: "#4f46e5",
+								700: "#4338ca",
+							},
+							medical: {
+								400: "#2dd4bf",
+								500: "#14b8a6",
+								600: "#0d9488",
+							},
+						},
+						animation: {
+							blob: "blob 10s infinite",
+							"pulse-slow":
+								"pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+						},
+						keyframes: {
+							blob: {
+								"0%": {
+									transform: "translate(0px, 0px) scale(1)",
+								},
+								"33%": {
+									transform:
+										"translate(30px, -40px) scale(1.08)",
+								},
+								"66%": {
+									transform:
+										"translate(-20px, 20px) scale(0.95)",
+								},
+								"100%": {
+									transform: "translate(0px, 0px) scale(1)",
+								},
+							},
+						},
+					},
+				},
+			};
+		</script>
+
+		<!-- Lucide Icons CDN -->
+		<script src="https://unpkg.com/lucide@latest"></script>
+
+		<!-- Minimal Custom Styles for Scroll Reveal & Glass Effects -->
+		<style>
+			/* Scroll reveal transitions */
+			.reveal {
+				opacity: 0;
+				transform: translateY(24px);
+				transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+					transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.reveal.active {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			/* Subtle grid pattern background */
+			.bg-grid-pattern {
+				background-size: 40px 40px;
+				background-image: linear-gradient(
+						to right,
+						rgba(148, 163, 184, 0.08) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						to bottom,
+						rgba(148, 163, 184, 0.08) 1px,
+						transparent 1px
+					);
+			}
+			.dark .bg-grid-pattern {
+				background-image: linear-gradient(
+						to right,
+						rgba(148, 163, 184, 0.05) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						to bottom,
+						rgba(148, 163, 184, 0.05) 1px,
+						transparent 1px
+					);
+			}
+		</style>
+
+		<!-- Prevent Flash of Wrong Theme (FOUC) -->
+		<script>
+			(function () {
+				const savedTheme = localStorage.getItem("huji-med-theme");
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)"
+				).matches;
+				if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+					document.documentElement.classList.add("dark");
+				} else {
+					document.documentElement.classList.remove("dark");
+				}
+			})();
+		</script>
+	</head>
+
+	<body
+		class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-indigo-500/20 selection:text-indigo-600 dark:selection:text-indigo-300 overflow-x-hidden transition-colors duration-300"
+	>
+		<!-- Background Ambient Mesh & Grid -->
+		<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+			<div class="absolute inset-0 bg-grid-pattern"></div>
+			<div
+				class="absolute -top-32 right-[-10%] w-[28rem] h-[28rem] bg-indigo-500/15 dark:bg-indigo-600/15 rounded-full blur-3xl animate-blob"
+			></div>
+			<div
+				class="absolute top-1/3 left-[-10%] w-[26rem] h-[26rem] bg-teal-400/15 dark:bg-teal-500/15 rounded-full blur-3xl animate-blob"
+				style="animation-delay: 3s"
+			></div>
+			<div
+				class="absolute -bottom-32 right-1/4 w-[24rem] h-[24rem] bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl animate-blob"
+				style="animation-delay: 6s"
+			></div>
+		</div>
+
+		<!-- ========================================== -->
+		<!-- 1. STICKY GLASSMORPHIC NAVBAR              -->
+		<!-- ========================================== -->
+		<header
+			class="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/75 dark:bg-slate-950/75 border-b border-slate-200/70 dark:border-slate-800/70 transition-colors duration-300"
+		>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex items-center justify-between h-16">
+					<!-- Brand Logo -->
+					<a
+						href="#"
+						class="flex items-center gap-3 group focus:outline-none"
+					>
+						<div
+							class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform"
+						>
+							<i data-lucide="stethoscope" class="w-5 h-5"></i>
+						</div>
+						<div class="flex flex-col">
+							<span
+								class="font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white leading-tight"
+							>
+								רפואנים בעברית
+							</span>
+							<span
+								class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight"
+							>
+								פורטל מחזור 2033
+							</span>
+						</div>
+					</a>
+
+					<!-- Desktop Navigation -->
+					<nav class="hidden md:flex items-center gap-1">
+						<a
+							href="#extension"
+							class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors"
+						>
+							תוסף המודל
+						</a>
+						<a
+							href="#guide"
+							class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors"
+						>
+							מדריך התקנה
+						</a>
+						<a
+							href="#upcoming"
+							class="tools-nav-link px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors"
+						>
+							כלים ומשאבים
+						</a>
+					</nav>
+
+					<!-- Action Buttons (Theme Toggle + Mobile Menu) -->
+					<div class="flex items-center gap-2">
+						<!-- Dark/Light Theme Toggle -->
+						<button
+							id="theme-toggle"
+							type="button"
+							aria-label="החלפת מצב תצוגה"
+							class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 border border-slate-200/60 dark:border-slate-700/60 transition-all active:scale-95"
+						>
+							<i
+								data-lucide="sun"
+								class="w-4 h-4 hidden dark:block text-amber-400"
+							></i>
+							<i
+								data-lucide="moon"
+								class="w-4 h-4 block dark:hidden text-indigo-600"
+							></i>
+						</button>
+
+						<!-- Mobile Menu Toggle -->
+						<button
+							id="mobile-menu-btn"
+							type="button"
+							aria-label="תפריט ניווט"
+							class="md:hidden p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 border border-slate-200/60 dark:border-slate-700/60 transition-all active:scale-95"
+						>
+							<i
+								data-lucide="menu"
+								id="menu-icon-open"
+								class="w-5 h-5 block"
+							></i>
+							<i
+								data-lucide="x"
+								id="menu-icon-close"
+								class="w-5 h-5 hidden"
+							></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mobile Dropdown Menu -->
+			<div
+				id="mobile-menu"
+				class="hidden md:hidden border-t border-slate-200/70 dark:border-slate-800/70 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl"
+			>
+				<div class="px-4 py-4 space-y-1.5">
+					<a
+						href="#extension"
+						class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+					>
+						<i
+							data-lucide="download-cloud"
+							class="w-4 h-4 text-indigo-500"
+						></i>
+						תוסף המודל
+					</a>
+					<a
+						href="#guide"
+						class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+					>
+						<i
+							data-lucide="play-circle"
+							class="w-4 h-4 text-teal-500"
+						></i>
+						מדריך התקנה
+					</a>
+					<a
+						href="#upcoming"
+						class="mobile-nav-link tools-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+					>
+						<i
+							data-lucide="sparkles"
+							class="w-4 h-4 text-amber-500"
+						></i>
+						כלים ומשאבים
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+			<!-- ========================================== -->
+			<!-- 2. HERO SECTION                            -->
+			<!-- ========================================== -->
+			<section class="pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
+				<div class="max-w-3xl mx-auto reveal">
+					<!-- Pill Badge -->
+					<div
+						class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 shadow-sm backdrop-blur-md mb-8"
+					>
+						<span class="relative flex h-2 w-2">
+							<span
+								class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"
+							></span>
+							<span
+								class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"
+							></span>
+						</span>
+						<span
+							id="cohort-badge-text"
+							class="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300"
+						>
+							יוזמת ועד מחזור 2033 • הפקולטה לרפואה, האוניברסיטה
+							העברית
+						</span>
+					</div>
+
+					<!-- Gradient Headline -->
+					<h1
+						class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] mb-6 text-slate-900 dark:text-white"
+					>
+						הכלים החכמים ללימודים,
+						<span
+							class="block mt-1 bg-gradient-to-l from-indigo-600 via-blue-500 to-teal-500 dark:from-indigo-400 dark:via-blue-400 dark:to-teal-300 bg-clip-text text-transparent"
+						>
+							במקום אחד.
+						</span>
+					</h1>
+
+					<!-- Subtitle -->
+					<p
+						class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mb-10"
+					>
+						פורטל המחזור מרכז עבורכם כלים ייעודיים, אוטומציות
+						ומשאבים שנבנו במיוחד כדי לחסוך זמן יקר, לייעל את הלמידה
+						ולהפוך את ההתנהלות מול המודל והקורסים להרבה יותר פשוטה.
+					</p>
+
+					<!-- CTA Buttons -->
+					<div
+						class="flex flex-col sm:flex-row items-center justify-center gap-4"
+					>
+						<a
+							href="#extension"
+							class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-semibold text-white bg-gradient-to-l from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all hover:-translate-y-0.5 active:translate-y-0"
+						>
+							<i data-lucide="download" class="w-5 h-5"></i>
+							<span>הורדת תוסף המודל</span>
+						</a>
+						<a
+							href="#guide"
+							class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm backdrop-blur-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+						>
+							<i
+								data-lucide="play-circle"
+								class="w-5 h-5 text-teal-600 dark:text-teal-400"
+							></i>
+							<span>סרטון ומדריך התקנה</span>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================== -->
+			<!-- 3. FEATURED TOOL SPOTLIGHT                 -->
+			<!-- ========================================== -->
+			<section id="extension" class="py-12 sm:py-16 scroll-mt-20">
+				<div class="reveal relative group">
+					<!-- Subtle Glowing Border Effect -->
+					<div
+						class="absolute -inset-0.5 bg-gradient-to-l from-indigo-500 via-blue-500 to-teal-500 rounded-3xl opacity-20 dark:opacity-30 blur-md group-hover:opacity-35 dark:group-hover:opacity-45 transition duration-500"
+					></div>
+
+					<!-- Main Spotlight Card -->
+					<div
+						class="relative rounded-3xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 lg:p-12 shadow-xl shadow-slate-200/40 dark:shadow-black/40"
+					>
+						<div
+							class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+						>
+							<!-- Left/Main Content (RTL: Right side) -->
+							<div class="lg:col-span-7 space-y-6">
+								<!-- Status Badge -->
+								<div
+									class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-500/10 border border-teal-200/80 dark:border-teal-500/20 text-teal-700 dark:text-teal-300 text-xs font-semibold"
+								>
+									<i
+										data-lucide="chrome"
+										class="w-3.5 h-3.5"
+									></i>
+									<span>זמין להורדה • Chrome Extension</span>
+								</div>
+
+								<h2
+									class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug"
+								>
+									תוסף הורדה חכם למודל ולהקלטות
+								</h2>
+
+								<p
+									class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed"
+								>
+									נמאס לכם להוריד מצגת אחרי מצגת ולחפש איך
+									לשמור הקלטות למחשב? התוסף שפותח במחזור מאפשר
+									להוריד תיקיית קורס שלמה, קבצי סיכומים, מצגות
+									והקלטות וידאו ישירות למחשב האישי — בצורה
+									מסודרת ובקליק אחד.
+								</p>
+
+								<!-- Feature Chips -->
+								<div
+									class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1"
+								>
+									<div
+										class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50"
+									>
+										<div
+											class="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0"
+										>
+											<i
+												data-lucide="folder-down"
+												class="w-4 h-4"
+											></i>
+										</div>
+										<span
+											class="text-sm font-medium text-slate-700 dark:text-slate-200"
+											>הורדת תיקיית קורס שלמה</span
+										>
+									</div>
+
+									<div
+										class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50"
+									>
+										<div
+											class="w-9 h-9 rounded-xl bg-teal-100 dark:bg-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0"
+										>
+											<i
+												data-lucide="video"
+												class="w-4 h-4"
+											></i>
+										</div>
+										<span
+											class="text-sm font-medium text-slate-700 dark:text-slate-200"
+											>הורדת הקלטות וידאו</span
+										>
+									</div>
+
+									<div
+										class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50"
+									>
+										<div
+											class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0"
+										>
+											<i
+												data-lucide="list-checks"
+												class="w-4 h-4"
+											></i>
+										</div>
+										<span
+											class="text-sm font-medium text-slate-700 dark:text-slate-200"
+											>בחירה סלקטיבית של קבצים</span
+										>
+									</div>
+
+									<div
+										class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50"
+									>
+										<div
+											class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0"
+										>
+											<i
+												data-lucide="shield-check"
+												class="w-4 h-4"
+											></i>
+										</div>
+										<span
+											class="text-sm font-medium text-slate-700 dark:text-slate-200"
+											>קוד פתוח ובטוח לחלוטין</span
+										>
+									</div>
+								</div>
+
+								<!-- Action Buttons -->
+								<div
+									class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-3"
+								>
+									<button
+										id="download-zip-btn"
+										type="button"
+										class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl font-semibold text-white bg-gradient-to-l from-indigo-600 via-blue-600 to-teal-600 hover:from-indigo-500 hover:via-blue-500 hover:to-teal-500 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+									>
+										<i
+											data-lucide="file-archive"
+											class="w-5 h-5"
+										></i>
+										<span>הורד את קבצי ההתקנה</span>
+									</button>
+
+									<a
+										id="github-repo-link"
+										href="#"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl font-semibold text-slate-700 dark:text-slate-200 bg-slate-100/90 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 border border-slate-200/80 dark:border-slate-700 transition-all"
+									>
+										<i
+											data-lucide="github"
+											class="w-5 h-5"
+										></i>
+										<span>צפה בקוד ב-GitHub</span>
+									</a>
+								</div>
+							</div>
+
+							<!-- Visual Mockup Preview Card (RTL: Left side) -->
+							<div class="lg:col-span-5">
+								<div
+									class="rounded-2xl bg-slate-900 dark:bg-slate-950 border border-slate-800 p-5 shadow-2xl text-slate-100 relative overflow-hidden"
+								>
+									<!-- Mockup Header -->
+									<div
+										class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800"
+									>
+										<div class="flex items-center gap-2">
+											<span
+												class="w-3 h-3 rounded-full bg-rose-500/80"
+											></span>
+											<span
+												class="w-3 h-3 rounded-full bg-amber-500/80"
+											></span>
+											<span
+												class="w-3 h-3 rounded-full bg-emerald-500/80"
+											></span>
+										</div>
+										<span
+											class="text-xs font-mono text-slate-400"
+											>Moodle Downloader v1.0</span
+										>
+									</div>
+
+									<!-- Mockup Course Folder UI -->
+									<div class="space-y-3">
+										<div
+											class="flex items-center justify-between p-3 rounded-xl bg-slate-800/70 border border-slate-700/60"
+										>
+											<div
+												class="flex items-center gap-3"
+											>
+												<i
+													data-lucide="folder-open"
+													class="w-5 h-5 text-indigo-400"
+												></i>
+												<div>
+													<div
+														class="text-sm font-semibold"
+													>
+														אנטומיה ודימות - שנה א׳
+													</div>
+													<div
+														class="text-xs text-slate-400"
+													>
+														24 מצגות • 12 הקלטות
+													</div>
+												</div>
+											</div>
+											<span
+												class="px-2.5 py-1 rounded-lg bg-teal-500/20 text-teal-300 text-xs font-medium"
+												>נבחר</span
+											>
+										</div>
+
+										<!-- File items -->
+										<div class="space-y-2 pr-2">
+											<div
+												class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-800/40 text-slate-300"
+											>
+												<div
+													class="flex items-center gap-2.5"
+												>
+													<i
+														data-lucide="file-text"
+														class="w-4 h-4 text-blue-400"
+													></i>
+													<span
+														>הרצאה 04 - מערכת הלב
+														וכלי הדם.pdf</span
+													>
+												</div>
+												<i
+													data-lucide="check-circle-2"
+													class="w-4 h-4 text-emerald-400"
+												></i>
+											</div>
+											<div
+												class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-800/40 text-slate-300"
+											>
+												<div
+													class="flex items-center gap-2.5"
+												>
+													<i
+														data-lucide="film"
+														class="w-4 h-4 text-teal-400"
+													></i>
+													<span
+														>הקלטת הרצאה 04
+														(HD).mp4</span
+													>
+												</div>
+												<i
+													data-lucide="check-circle-2"
+													class="w-4 h-4 text-emerald-400"
+												></i>
+											</div>
+											<div
+												class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-800/40 text-slate-300"
+											>
+												<div
+													class="flex items-center gap-2.5"
+												>
+													<i
+														data-lucide="file-spreadsheet"
+														class="w-4 h-4 text-indigo-400"
+													></i>
+													<span
+														>סילבוס וחלוקת
+														מעבדות.docx</span
+													>
+												</div>
+												<i
+													data-lucide="check-circle-2"
+													class="w-4 h-4 text-emerald-400"
+												></i>
+											</div>
+										</div>
+
+										<!-- Progress Bar -->
+										<div class="pt-3">
+											<div
+												class="flex justify-between text-xs text-slate-400 mb-1.5"
+											>
+												<span
+													>מוריד לתיקייה
+													המקומית...</span
+												>
+												<span
+													class="text-teal-400 font-semibold"
+													>100%</span
+												>
+											</div>
+											<div
+												class="w-full h-2 rounded-full bg-slate-800 overflow-hidden"
+											>
+												<div
+													class="h-full w-full bg-gradient-to-l from-indigo-500 to-teal-400 rounded-full"
+												></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================== -->
+			<!-- 4. INSTALLATION VIDEO & STEP-BY-STEP GUIDE -->
+			<!-- ========================================== -->
+			<section id="guide" class="py-16 sm:py-24 scroll-mt-20">
+				<div
+					class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 reveal"
+				>
+					<span
+						class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2 block"
+					>
+						פשוט ומהיר • פחות מ-2 דקות
+					</span>
+					<h2
+						class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
+					>
+						מדריך התקנה מהיר וסרטון הדרכה
+					</h2>
+					<p
+						class="text-slate-600 dark:text-slate-400 text-base sm:text-lg"
+					>
+						מכיוון שהתוסף מופץ באופן פתוח דרך GitHub (ולא דרך חנות
+						כרום), ההתקנה מתבצעת בארבעה צעדים פשוטים וחד-פעמיים.
+					</p>
+				</div>
+
+				<div
+					class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start"
+				>
+					<!-- Column 1: 16:9 Video Player Container -->
+					<div class="lg:col-span-6 reveal">
+						<div
+							class="rounded-3xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 p-3 sm:p-4 shadow-lg"
+						>
+							<div
+								id="video-container"
+								class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center group"
+							>
+								<!-- Default Placeholder (Replaced automatically if SITE_CONFIG.videoEmbedUrl is set) -->
+								<div
+									id="video-placeholder"
+									class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-slate-900 via-indigo-950/90 to-slate-900 cursor-pointer"
+								>
+									<!-- Subtle decorative glow -->
+									<div
+										class="absolute w-48 h-48 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"
+									></div>
+
+									<!-- Play Button Overlay -->
+									<div class="relative mb-5">
+										<span
+											class="absolute inset-0 rounded-full bg-indigo-500/40 animate-ping"
+										></span>
+										<div
+											class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:bg-indigo-600 transition-all duration-300"
+										>
+											<i
+												data-lucide="play"
+												class="w-7 h-7 sm:w-8 sm:h-8 fill-current mr-[-2px]"
+											></i>
+										</div>
+									</div>
+
+									<span
+										class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-teal-300 text-xs font-medium mb-2 border border-white/10"
+									>
+										<i
+											data-lucide="clapperboard"
+											class="w-3.5 h-3.5"
+										></i>
+										בהפקה
+									</span>
+									<h3
+										class="text-lg sm:text-xl font-bold text-white mb-1"
+									>
+										סרטון הדרכה מלא יעלה בקרוב
+									</h3>
+									<p
+										class="text-xs sm:text-sm text-slate-300 max-w-xs"
+									>
+										הסבר מצולם שלב-אחר-שלב על הורדת התוסף,
+										התקנתו בכרום ושימוש במודל.
+									</p>
+								</div>
+							</div>
+
+							<div
+								class="flex items-center justify-between px-2 pt-3 pb-1 text-xs text-slate-500 dark:text-slate-400"
+							>
+								<span class="flex items-center gap-1.5">
+									<i
+										data-lucide="monitor-play"
+										class="w-4 h-4 text-indigo-500"
+									></i>
+									מותאם לדפדפני Chrome, Edge ו-Brave
+								</span>
+								<span>למחשב (Desktop)</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Column 2: 4-Step Visual Stepper -->
+					<div class="lg:col-span-6 space-y-4 reveal">
+						<!-- Step 1 -->
+						<div
+							class="flex gap-4 p-5 rounded-2xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
+						>
+							<div
+								class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold text-lg flex items-center justify-center shrink-0 border border-indigo-100 dark:border-indigo-500/20"
+							>
+								1
+							</div>
+							<div class="space-y-1">
+								<h3
+									class="font-bold text-slate-900 dark:text-white text-base"
+								>
+									הורדה וחילוץ הקבצים
+								</h3>
+								<p
+									class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+								>
+									לחצו על כפתור ההורדה למעלה כדי להוריד את
+									קובץ ה-ZIP. לאחר מכן, חלצו (Extract) את
+									התיקייה למיקום קבוע במחשב שלא תמחקו (למשל
+									בתוך תיקיית המסמכים).
+								</p>
+							</div>
+						</div>
+
+						<!-- Step 2 (With Copy to Clipboard) -->
+						<div
+							class="flex gap-4 p-5 rounded-2xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
+						>
+							<div
+								class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 font-bold text-lg flex items-center justify-center shrink-0 border border-blue-100 dark:border-blue-500/20"
+							>
+								2
+							</div>
+							<div class="space-y-2.5 flex-1 min-w-0">
+								<h3
+									class="font-bold text-slate-900 dark:text-white text-base"
+								>
+									פתיחת עמוד התוספים בכרום
+								</h3>
+								<p
+									class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+								>
+									פתחו לשונית חדשה בדפדפן, העתיקו את הכתובת
+									הבאה והדביקו אותה בשורת הכתובת:
+								</p>
+								<!-- Copyable Code Box -->
+								<div
+									class="flex items-center justify-between gap-2 p-2 pr-3.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800"
+								>
+									<code
+										dir="ltr"
+										class="text-xs sm:text-sm font-mono text-indigo-600 dark:text-indigo-400 truncate select-all"
+									>
+										chrome://extensions
+									</code>
+									<button
+										id="copy-extensions-btn"
+										type="button"
+										class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-indigo-500/20 hover:text-indigo-600 dark:hover:text-indigo-300 transition-all shrink-0 cursor-pointer active:scale-95"
+									>
+										<i
+											data-lucide="copy"
+											id="copy-icon"
+											class="w-3.5 h-3.5"
+										></i>
+										<i
+											data-lucide="check"
+											id="check-icon"
+											class="w-3.5 h-3.5 hidden text-emerald-500"
+										></i>
+										<span id="copy-btn-text">העתק</span>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Step 3 -->
+						<div
+							class="flex gap-4 p-5 rounded-2xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
+						>
+							<div
+								class="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-lg flex items-center justify-center shrink-0 border border-teal-100 dark:border-teal-500/20"
+							>
+								3
+							</div>
+							<div class="space-y-1">
+								<h3
+									class="font-bold text-slate-900 dark:text-white text-base"
+								>
+									הפעלת מצב פיתוח (Developer Mode)
+								</h3>
+								<p
+									class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+								>
+									בפינה העליונה של עמוד התוספים, הפעילו את
+									המתג של
+									<span
+										class="font-semibold text-slate-800 dark:text-slate-200"
+										>"מצב פיתוח" (Developer Mode)</span
+									>. פעולה זו תפתח כפתורים חדשים בראש העמוד.
+								</p>
+							</div>
+						</div>
+
+						<!-- Step 4 -->
+						<div
+							class="flex gap-4 p-5 rounded-2xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
+						>
+							<div
+								class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-lg flex items-center justify-center shrink-0 border border-emerald-100 dark:border-emerald-500/20"
+							>
+								4
+							</div>
+							<div class="space-y-1">
+								<h3
+									class="font-bold text-slate-900 dark:text-white text-base"
+								>
+									טעינת התוסף למערכת
+								</h3>
+								<p
+									class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+								>
+									לחצו על
+									<span
+										class="font-semibold text-slate-800 dark:text-slate-200"
+										>"טעינת תוסף לא ארוז" (Load
+										unpacked)</span
+									>
+									ובחרו את התיקייה שחילצתם בשלב 1. זהו! התוסף
+									מותקן ומוכן לעבודה במודל.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================== -->
+			<!-- 5. DYNAMIC COHORT TOOLS (BENTO GRID)       -->
+			<!-- ========================================== -->
+			<section id="upcoming" class="py-16 sm:py-24 scroll-mt-20">
+				<div
+					class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal"
+				>
+					<div>
+						<span
+							class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-2 block"
+						>
+							כלים ומשאבים
+						</span>
+						<h2
+							class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight"
+						>
+							כלים ומשאבים נוספים למחזור
+						</h2>
+					</div>
+					<p
+						class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-md"
+					>
+						כאן מרוכזים כלים, אתרים ויוזמות נוספות שנבנו במחזור
+						ולמען המחזור.
+					</p>
+				</div>
+
+				<!-- Dynamic Bento Grid (Populated automatically from PORTAL_TOOLS in JS) -->
+				<div
+					id="tools-bento-grid"
+					class="grid grid-cols-1 md:grid-cols-6 gap-5 reveal"
+				></div>
+			</section>
+		</main>
+
+		<!-- ========================================== -->
+		<!-- 6. FOOTER                                  -->
+		<!-- ========================================== -->
+		<footer
+			class="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-950/50 backdrop-blur-md mt-12"
+		>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<div
+					class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400"
+				>
+					<div
+						class="flex items-center gap-2 text-center sm:text-right"
+					>
+						<i
+							data-lucide="heart-pulse"
+							class="w-4 h-4 text-teal-500 shrink-0"
+						></i>
+						<span
+							>נבנה על ידי ועד מחזור 2033 • הפקולטה לרפואה,
+							האוניברסיטה העברית</span
+						>
+					</div>
+					<div class="flex items-center gap-4">
+						<a
+							id="footer-github-link"
+							href="#"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+						>
+							<i data-lucide="github" class="w-4 h-4"></i>
+							<span>GitHub</span>
+						</a>
+						<span class="text-slate-300 dark:text-slate-700"
+							>|</span
+						>
+						<span id="current-year"></span>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- ========================================== -->
+		<!-- INTERACTIVE MODAL: SUGGEST AN IDEA         -->
+		<!-- ========================================== -->
+		<div
+			id="idea-modal"
+			class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm transition-opacity"
+		>
+			<div
+				class="relative w-full max-w-md rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-2xl transform transition-all"
+			>
+				<button
+					id="close-idea-modal-btn"
+					type="button"
+					aria-label="סגור חלון"
+					class="absolute top-5 left-5 p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+				>
+					<i data-lucide="x" class="w-5 h-5"></i>
+				</button>
+
+				<div class="flex items-center gap-3 mb-4">
+					<div
+						class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center"
+					>
+						<i data-lucide="sparkles" class="w-5 h-5"></i>
+					</div>
+					<div>
+						<h3
+							class="text-lg font-bold text-slate-900 dark:text-white"
+						>
+							בקשה/תלונה/הצעת רעיון חדש
+						</h3>
+						<p class="text-xs text-slate-500 dark:text-slate-400">
+							נשמח לשמוע איך נוכל לעזור לכם
+						</p>
+					</div>
+				</div>
+
+				<form id="idea-form" class="space-y-4 mt-5">
+					<div>
+						<label
+							for="idea-title"
+							class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5"
+							>כותרת לבקשה</label
+						>
+						<input
+							type="text"
+							id="idea-title"
+							required
+							placeholder="למשל: ערעור על שאלה 7 במבחן"
+							class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+						/>
+					</div>
+					<div>
+						<label
+							for="idea-desc"
+							class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5"
+							>תיאור קצר</label
+						>
+						<textarea
+							id="idea-desc"
+							rows="3"
+							required
+							placeholder="תפרטו כדי לכוון אותנו לבעיה במדויק"
+							class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all resize-none"
+						></textarea>
+					</div>
+					<div>
+						<label
+							for="idea-sender"
+							class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5"
+							>שם / פרט ליצירת קשר
+							<span class="font-normal text-slate-400"
+								>(אופציונלי)</span
+							></label
+						>
+						<input
+							type="text"
+							id="idea-sender"
+							placeholder="רק אם באלך"
+							class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+						/>
+					</div>
+					<div class="flex items-center gap-3 pt-2">
+						<button
+							id="idea-submit-btn"
+							type="submit"
+							class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed shadow-md shadow-indigo-500/20 transition-all cursor-pointer"
+						>
+							<i
+								data-lucide="send"
+								id="idea-submit-icon"
+								class="w-4 h-4"
+							></i>
+							<span id="idea-submit-text">שליחת הצעה</span>
+						</button>
+						<button
+							type="button"
+							id="cancel-idea-modal-btn"
+							class="px-4 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+						>
+							ביטול
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- ========================================== -->
+		<!-- INTERACTIVE MODAL: EMBEDDED IFRAME VIEWER  -->
+		<!-- ========================================== -->
+		<div
+			id="iframe-modal"
+			class="fixed inset-0 z-50 hidden items-center justify-center p-2 sm:p-4 bg-slate-950/70 backdrop-blur-md transition-opacity"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="iframe-modal-title"
+		>
+			<div
+				class="relative w-[96vw] h-[90vh] max-w-7xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col overflow-hidden"
+			>
+				<!-- Modal Top Toolbar -->
+				<div
+					class="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-slate-200/80 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/90 shrink-0"
+				>
+					<!-- Right side (RTL): Tool Icon, Title & URL Badge -->
+					<div class="flex items-center gap-3 min-w-0">
+						<div
+							id="iframe-modal-icon-wrap"
+							class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0"
+						>
+							<i data-lucide="globe" class="w-5 h-5"></i>
+						</div>
+						<div class="min-w-0">
+							<h3
+								id="iframe-modal-title"
+								class="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate"
+							>
+								טוען כלי...
+							</h3>
+							<span
+								id="iframe-modal-url"
+								dir="ltr"
+								class="block text-xs font-mono text-slate-500 dark:text-slate-400 truncate max-w-[160px] sm:max-w-xs md:max-w-md"
+							>
+								https://
+							</span>
+						</div>
+					</div>
+
+					<!-- Left side (RTL): Toolbar Actions -->
+					<div class="flex items-center gap-2 shrink-0">
+						<button
+							id="iframe-refresh-btn"
+							type="button"
+							title="רענון התצוגה"
+							aria-label="רענון התצוגה"
+							class="p-2 sm:p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 transition-all cursor-pointer active:scale-95"
+						>
+							<i data-lucide="refresh-cw" class="w-4 h-4"></i>
+						</button>
+
+						<a
+							id="iframe-external-link"
+							href="#"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-sm shadow-indigo-500/20 transition-all active:scale-95"
+						>
+							<i data-lucide="external-link" class="w-4 h-4"></i>
+							<span class="hidden sm:inline"
+								>פתח בלשונית חדשה</span
+							>
+						</a>
+
+						<button
+							id="iframe-close-btn"
+							type="button"
+							aria-label="סגור חלון"
+							class="p-2 sm:p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all cursor-pointer active:scale-95"
+						>
+							<i data-lucide="x" class="w-4 h-4"></i>
+						</button>
+					</div>
+				</div>
+
+				<!-- Main iFrame Viewport -->
+				<div
+					class="relative flex-1 bg-slate-100 dark:bg-slate-950 overflow-hidden"
+				>
+					<!-- Loading Spinner Overlay -->
+					<div
+						id="iframe-loader"
+						class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-sm transition-opacity duration-300"
+					>
+						<div
+							class="w-10 h-10 rounded-full border-4 border-indigo-500/20 border-t-indigo-600 dark:border-t-indigo-400 animate-spin"
+						></div>
+						<span
+							class="text-sm font-medium text-slate-600 dark:text-slate-300"
+							>טוען את האתר...</span
+						>
+					</div>
+
+					<iframe
+						id="iframe-viewer"
+						src="about:blank"
+						class="w-full h-full border-0 bg-white"
+						title="תצוגת אתר מוטמעת"
+						referrerpolicy="no-referrer-when-downgrade"
+					></iframe>
+				</div>
+
+				<!-- Subtle Fallback Tip Footer -->
+				<div
+					class="px-4 sm:px-6 py-2.5 border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/90 flex items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400 shrink-0"
+				>
+					<div class="flex items-center gap-2">
+						<i
+							data-lucide="info"
+							class="w-3.5 h-3.5 text-indigo-500 shrink-0"
+						></i>
+						<span
+							>האתר לא נטען או נחסם בתצוגה המוטמעת? לחצו על
+							<strong class="text-slate-700 dark:text-slate-200"
+								>"פתח בלשונית חדשה"</strong
+							>
+							בסרגל העליון.</span
+						>
+					</div>
+					<span
+						class="hidden md:inline text-slate-400 dark:text-slate-500"
+						>ESC לסגירה</span
+					>
+				</div>
+			</div>
+		</div>
+
+		<!-- ========================================== -->
+		<!-- TOAST NOTIFICATION CONTAINER               -->
+		<!-- ========================================== -->
+		<div
+			id="toast-container"
+			class="fixed bottom-5 left-5 right-5 sm:right-auto sm:w-96 z-50 flex flex-col gap-2.5 pointer-events-none"
+		></div>
+
+		<!-- ========================================== -->
+		<!-- JAVASCRIPT LOGIC & CENTRALIZED CONFIG      -->
+		<!-- ========================================== -->
+		<script>
+			/**
+			 * ====================================================================
+			 * CENTRALIZED SITE CONFIGURATION (SITE_CONFIG)
+			 * Update GitHub repository details, video embed URL, analytics ID, and visibility flags here.
+			 * ====================================================================
+			 */
+			const SITE_CONFIG = {
+				// 1. Your GitHub username
+				githubUsername: "DuvManR",
+
+				// 2. Repository name hosting the Moodle course downloader extension
+				extensionRepoName: "hujiMoodleDownloader",
+
+				// 3. Default branch name in the repository (usually "main" or "master")
+				extensionBranch: "main",
+
+				// 4. YouTube Embed URL for the installation tutorial (e.g., "https://www.youtube.com/embed/VIDEO_ID")
+				// Leave empty ("") to show the styled "Coming Soon" placeholder.
+				videoEmbedUrl: "",
+
+				// 5. Cohort label displayed in the hero badge
+				cohortName:
+					"יוזמת ועד מחזור 2033 • הפקולטה לרפואה, האוניברסיטה העברית",
+
+				// 6. Google Apps Script Web App URL (handles email + iCloud Push privately on the backend)
+				ideaWebhookUrl:
+					"https://script.google.com/macros/s/AKfycbwcBuBqO56Dck_EtnxLUKa3DtdqzXuM-_o3cvE352WqgBZl8jbM6MWm9M2Sl0GcR9-l/exec",
+
+				// 7. Google Analytics 4 Measurement ID (e.g., "G-XXXXXXXXXX")
+				// Leave empty ("") to disable analytics until you paste your GA4 ID from analytics.google.com.
+				gaMeasurementId: "G-K4JQFE9XGF",
+
+				// 8. Toggle the entire Tools & Resources Bento section (and its navbar links)
+				showToolsSection: true,
+
+				// 9. Toggle the "Suggest an Idea" card at the end of the Bento grid
+				showIdeaCard: true,
+			};
+
+			/**
+			 * ====================================================================
+			 * DEVELOPER-CONTROLLED BENTO GRID TOOLS (PORTAL_TOOLS)
+			 * Flip `visible: true` or `false` to show/hide any card without touching HTML.
+			 * Supported colors: "indigo" | "teal" | "blue" | "purple" | "emerald" | "amber" | "rose"
+			 * Supported colSpan (on 6-col desktop grid): 2 | 3 | 6
+			 * Supported actionType: "iframe" | "external" | "upcoming"
+			 * Every tool added here is automatically tracked in Google Analytics!
+			 * ====================================================================
+			 */
+			const PORTAL_TOOLS = [
+				{
+					id: "ai-course-summaries",
+					visible: true,
+					title: "אתר סיכומי קורסים (AI)",
+					description:
+						"אתר סיכומים אינטראקטיבי שנבנה על ידי חבר מהמחזור לסיכום חומרי הלימוד והרצאות הקורסים.",
+					icon: "book-open-check",
+					color: "indigo",
+					colSpan: 3,
+					badge: "תוצרת המחזור",
+					actionType: "iframe",
+					url: "https://general-chemistry-he-2026-s4n8.sachanzd.chatgpt.site/",
+					buttonText: "פתח בתוך האתר",
+				},
+				{
+					id: "cohort-drive",
+					visible: true,
+					title: "דרייב סיכומים ושחזורים",
+					description:
+						"גישה מהירה ומסודרת לתיקיית הדרייב של המסלול, מחולקת לפי שנים, סמסטרים וקורסים.",
+					icon: "folder-kanban",
+					color: "teal",
+					colSpan: 3,
+					badge: "קישור חיצוני",
+					actionType: "external",
+					url: "https://drive.google.com/drive/folders/0B8qfNO1gfILdem5KaTI3dFlWY1k?resourcekey=0-THSokAC4rhCFgo6e1AmVCA",
+					buttonText: "פתח בלשונית חדשה",
+				},
+				{
+					id: "gpa-calculator",
+					visible: false,
+					title: "מחשבון ממוצע ציונים ושקלול נק״ז",
+					description:
+						"מחשבון מותאם מראש לתוכנית הלימודים של רפואה בעברית, המאפשר לחשב ממוצע שנתי ומצטבר ולבדוק השפעה של מועדי ב'.",
+					icon: "calculator",
+					color: "blue",
+					colSpan: 2,
+					badge: "בקרוב",
+					actionType: "upcoming",
+					url: "",
+					buttonText: "בקרוב",
+				},
+				{
+					id: "exams-calendar",
+					visible: false,
+					title: "לוח מבחנים ומערכת מסונכרנת",
+					description:
+						"לוח שנה מחזורי שניתן לסנכרן בלחיצה ל-Google Calendar עם כל מועדי המבחנים, הבחנים והגשות החובה.",
+					icon: "calendar-days",
+					color: "purple",
+					colSpan: 2,
+					badge: "בקרוב",
+					actionType: "upcoming",
+					url: "",
+					buttonText: "בקרוב",
+				},
+				{
+					id: "zoom-whatsapp-links",
+					visible: false,
+					title: "ריכוז קישורי זום וקבוצות קורסים",
+					description:
+						"כל קישורי הזום להרצאות, קבוצות הוואטסאפ של הקורסים ורשימת אנשי הקשר החשובים בפקולטה במקום אחד.",
+					icon: "link-2",
+					color: "emerald",
+					colSpan: 2,
+					badge: "בקרוב",
+					actionType: "upcoming",
+					url: "",
+					buttonText: "בקרוב",
+				},
+			];
+
+			/**
+			 * ====================================================================
+			 * GOOGLE ANALYTICS 4 (GA4) INITIALIZATION & EVENT TRACKING
+			 * Automatically tracks page_view on load + all custom portal interactions.
+			 * Fails silently if AdBlocker is active so UX is never disrupted.
+			 * ====================================================================
+			 */
+			function initGoogleAnalytics() {
+				const gaId = (SITE_CONFIG.gaMeasurementId || "").trim();
+				if (!gaId || gaId === "G-XXXXXXXXXX") return;
+
+				try {
+					window.dataLayer = window.dataLayer || [];
+					window.gtag = function () {
+						window.dataLayer.push(arguments);
+					};
+					window.gtag("js", new Date());
+					window.gtag("config", gaId, {
+						page_title: document.title,
+						send_page_view: true,
+					});
+
+					const script = document.createElement("script");
+					script.async = true;
+					script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
+						gaId
+					)}`;
+					document.head.appendChild(script);
+				} catch (err) {
+					console.warn("GA4 initialization skipped:", err);
+				}
+			}
+
+			/**
+			 * Sends a custom event to GA4 safely
+			 * @param {string} eventName - GA4 event name (snake_case)
+			 * @param {Object} params - Optional event metadata
+			 */
+			function trackEvent(eventName, params = {}) {
+				try {
+					if (typeof window.gtag === "function") {
+						window.gtag("event", eventName, params);
+					}
+				} catch (err) {
+					// Never disrupt user actions if analytics is blocked
+				}
+			}
+
+			// Initialize GA4 immediately so page_view is recorded as early as possible
+			initGoogleAnalytics();
+
+			// Auto-build GitHub URLs from SITE_CONFIG
+			const isPlaceholderConfig =
+				SITE_CONFIG.githubUsername === "YOUR_USERNAME" ||
+				!SITE_CONFIG.githubUsername.trim();
+			const GITHUB_REPO_URL = `https://github.com/${SITE_CONFIG.githubUsername}/${SITE_CONFIG.extensionRepoName}`;
+			const GITHUB_ZIP_URL = `https://github.com/${SITE_CONFIG.githubUsername}/${SITE_CONFIG.extensionRepoName}/archive/refs/heads/${SITE_CONFIG.extensionBranch}.zip`;
+
+			// Static Tailwind class lookup maps so Tailwind CDN generates all dynamic variants reliably
+			const TOOL_COLOR_STYLES = {
+				indigo: {
+					iconWrap:
+						"bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400",
+					badge: "bg-indigo-50 dark:bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-200/70 dark:border-indigo-500/30",
+					button: "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-500/20",
+				},
+				teal: {
+					iconWrap:
+						"bg-teal-50 dark:bg-teal-500/15 text-teal-600 dark:text-teal-400",
+					badge: "bg-teal-50 dark:bg-teal-500/15 text-teal-700 dark:text-teal-300 border-teal-200/70 dark:border-teal-500/30",
+					button: "bg-teal-600 hover:bg-teal-500 text-white shadow-teal-500/20",
+				},
+				blue: {
+					iconWrap:
+						"bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400",
+					badge: "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-200/70 dark:border-blue-500/30",
+					button: "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/20",
+				},
+				purple: {
+					iconWrap:
+						"bg-purple-50 dark:bg-purple-500/15 text-purple-600 dark:text-purple-400",
+					badge: "bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-200/70 dark:border-purple-500/30",
+					button: "bg-purple-600 hover:bg-purple-500 text-white shadow-purple-500/20",
+				},
+				emerald: {
+					iconWrap:
+						"bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400",
+					badge: "bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-500/30",
+					button: "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/20",
+				},
+				amber: {
+					iconWrap:
+						"bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400",
+					badge: "bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-200/70 dark:border-amber-500/30",
+					button: "bg-amber-600 hover:bg-amber-500 text-white shadow-amber-500/20",
+				},
+				rose: {
+					iconWrap:
+						"bg-rose-50 dark:bg-rose-500/15 text-rose-600 dark:text-rose-400",
+					badge: "bg-rose-50 dark:bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-200/70 dark:border-rose-500/30",
+					button: "bg-rose-600 hover:bg-rose-500 text-white shadow-rose-500/20",
+				},
+			};
+
+			const COL_SPAN_CLASSES = {
+				2: "md:col-span-2",
+				3: "md:col-span-3",
+				4: "md:col-span-4",
+				6: "md:col-span-6",
+			};
+
+			/**
+			 * Toast Notification System (never uses alert/confirm)
+			 */
+			function showToast(message, type = "info") {
+				const container = document.getElementById("toast-container");
+				const toast = document.createElement("div");
+
+				const styles = {
+					success: "bg-emerald-600 text-white border-emerald-500",
+					warning: "bg-amber-500 text-slate-950 border-amber-400",
+					info: "bg-slate-900 dark:bg-slate-800 text-white border-slate-700",
+				};
+
+				const icons = {
+					success: "check-circle-2",
+					warning: "alert-triangle",
+					info: "info",
+				};
+
+				toast.className = `pointer-events-auto flex items-start gap-3 px-4 py-3.5 rounded-2xl border shadow-xl backdrop-blur-md text-sm font-medium transform translate-y-4 opacity-0 transition-all duration-300 ${
+					styles[type] || styles.info
+				}`;
+				toast.innerHTML = `
+                <i data-lucide="${
+					icons[type] || icons.info
+				}" class="w-5 h-5 shrink-0 mt-0.5"></i>
+                <span class="leading-snug">${message}</span>
+            `;
+
+				container.appendChild(toast);
+				lucide.createIcons({ root: toast });
+
+				// Trigger enter animation
+				requestAnimationFrame(() => {
+					toast.classList.remove("translate-y-4", "opacity-0");
+				});
+
+				// Auto remove after 4.5s
+				setTimeout(() => {
+					toast.classList.add("translate-y-2", "opacity-0");
+					setTimeout(() => toast.remove(), 300);
+				}, 4500);
+			}
+
+			/**
+			 * Copy to clipboard helper (compatible with restricted iFrame environments)
+			 */
+			function copyToClipboard(text) {
+				try {
+					const textarea = document.createElement("textarea");
+					textarea.value = text;
+					textarea.style.position = "fixed";
+					textarea.style.opacity = "0";
+					document.body.appendChild(textarea);
+					textarea.focus();
+					textarea.select();
+					const successful = document.execCommand("copy");
+					document.body.removeChild(textarea);
+					return successful;
+				} catch (err) {
+					console.error("Copy failed:", err);
+					return false;
+				}
+			}
+
+			/**
+			 * Initialize Page on DOMContentLoaded
+			 */
+			document.addEventListener("DOMContentLoaded", () => {
+				// 1. Render Lucide Icons
+				lucide.createIcons();
+
+				// 2. Set Dynamic Year & Cohort Text
+				document.getElementById(
+					"current-year"
+				).textContent = `© ${new Date().getFullYear()}`;
+				if (SITE_CONFIG.cohortName) {
+					document.getElementById("cohort-badge-text").textContent =
+						SITE_CONFIG.cohortName;
+				}
+
+				// 3. Configure GitHub Links + Analytics
+				const repoLinkEl = document.getElementById("github-repo-link");
+				const footerGithubEl =
+					document.getElementById("footer-github-link");
+				const downloadBtn = document.getElementById("download-zip-btn");
+
+				if (!isPlaceholderConfig) {
+					repoLinkEl.href = GITHUB_REPO_URL;
+					footerGithubEl.href = `https://github.com/${SITE_CONFIG.githubUsername}`;
+
+					repoLinkEl.addEventListener("click", () => {
+						trackEvent("github_repo_click", {
+							location: "extension_card",
+							repo_name: SITE_CONFIG.extensionRepoName,
+						});
+					});
+					footerGithubEl.addEventListener("click", () => {
+						trackEvent("github_repo_click", {
+							location: "footer",
+							repo_name: SITE_CONFIG.extensionRepoName,
+						});
+					});
+				} else {
+					const handleUnconfiguredRepo = (e) => {
+						e.preventDefault();
+						showToast(
+							"יש לעדכן את שם המשתמש והריפוזיטורי שלך במשתנה SITE_CONFIG שבראש הקוד כדי להפעיל את הקישור.",
+							"warning"
+						);
+					};
+					repoLinkEl.addEventListener(
+						"click",
+						handleUnconfiguredRepo
+					);
+					footerGithubEl.addEventListener(
+						"click",
+						handleUnconfiguredRepo
+					);
+				}
+
+				// Direct ZIP Download Action
+				downloadBtn.addEventListener("click", () => {
+					if (isPlaceholderConfig) {
+						showToast(
+							"מצב הדגמה: עדכן את githubUsername ו-extensionRepoName ב-SITE_CONFIG כדי להפעיל הורדה ישירה של קובץ ה-ZIP מ-GitHub.",
+							"warning"
+						);
+						return;
+					}
+
+					trackEvent("extension_download", {
+						repo_name: SITE_CONFIG.extensionRepoName,
+						branch: SITE_CONFIG.extensionBranch,
+					});
+
+					showToast(
+						"ההורדה הישירה מ-GitHub מתחילה כעת! חלצו את קובץ ה-ZIP ועקבו אחר מדריך ההתקנה.",
+						"success"
+					);
+
+					// Trigger direct download via temporary anchor
+					const link = document.createElement("a");
+					link.href = GITHUB_ZIP_URL;
+					link.setAttribute(
+						"download",
+						`${SITE_CONFIG.extensionRepoName}.zip`
+					);
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				});
+
+				// 4. Configure Video Player (Auto-swap placeholder with iframe if URL is provided)
+				const videoContainer =
+					document.getElementById("video-container");
+				const videoPlaceholder =
+					document.getElementById("video-placeholder");
+
+				if (
+					SITE_CONFIG.videoEmbedUrl &&
+					SITE_CONFIG.videoEmbedUrl.trim() !== ""
+				) {
+					videoContainer.innerHTML = `
+                    <iframe
+                        class="w-full h-full border-0"
+                        src="${SITE_CONFIG.videoEmbedUrl}"
+                        title="סרטון הדרכה להתקנת תוסף המודל"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                `;
+				} else if (videoPlaceholder) {
+					videoPlaceholder.addEventListener("click", () => {
+						trackEvent("video_placeholder_click");
+						showToast("סרטון ההדרכה יעלה בקרוב!", "info");
+					});
+				}
+
+				// 5. Copy "chrome://extensions" Button
+				const copyBtn = document.getElementById("copy-extensions-btn");
+				const copyIcon = document.getElementById("copy-icon");
+				const checkIcon = document.getElementById("check-icon");
+				const copyBtnText = document.getElementById("copy-btn-text");
+
+				copyBtn.addEventListener("click", () => {
+					const success = copyToClipboard("chrome://extensions");
+					if (success) {
+						trackEvent("copy_extensions_url");
+						copyIcon.classList.add("hidden");
+						checkIcon.classList.remove("hidden");
+						copyBtnText.textContent = "הועתק!";
+						showToast(
+							"הכתובת chrome://extensions הועתקה! הדביקו אותה בשורת הכתובת בכרום.",
+							"success"
+						);
+
+						setTimeout(() => {
+							copyIcon.classList.remove("hidden");
+							checkIcon.classList.add("hidden");
+							copyBtnText.textContent = "העתק";
+						}, 2500);
+					} else {
+						showToast(
+							"לא ניתן היה להעתיק אוטומטית. אנא סמנו והעתיקו ידנית.",
+							"warning"
+						);
+					}
+				});
+
+				// 6. Dark / Light Theme Toggle
+				const themeToggleBtn = document.getElementById("theme-toggle");
+				themeToggleBtn.addEventListener("click", () => {
+					const html = document.documentElement;
+					const isDark = html.classList.toggle("dark");
+					const newTheme = isDark ? "dark" : "light";
+					localStorage.setItem("huji-med-theme", newTheme);
+					trackEvent("theme_toggle", { theme: newTheme });
+				});
+
+				// 7. Mobile Hamburger Menu
+				const mobileMenuBtn =
+					document.getElementById("mobile-menu-btn");
+				const mobileMenu = document.getElementById("mobile-menu");
+				const menuIconOpen = document.getElementById("menu-icon-open");
+				const menuIconClose =
+					document.getElementById("menu-icon-close");
+				const mobileNavLinks =
+					document.querySelectorAll(".mobile-nav-link");
+
+				function toggleMobileMenu(forceClose = false) {
+					const isCurrentlyHidden =
+						mobileMenu.classList.contains("hidden");
+					if (forceClose || !isCurrentlyHidden) {
+						mobileMenu.classList.add("hidden");
+						menuIconOpen.classList.remove("hidden");
+						menuIconClose.classList.add("hidden");
+					} else {
+						mobileMenu.classList.remove("hidden");
+						menuIconOpen.classList.add("hidden");
+						menuIconClose.classList.remove("hidden");
+					}
+				}
+
+				mobileMenuBtn.addEventListener("click", () =>
+					toggleMobileMenu(false)
+				);
+				mobileNavLinks.forEach((link) => {
+					link.addEventListener("click", () =>
+						toggleMobileMenu(true)
+					);
+				});
+
+				// 8. Suggest an Idea Modal (Google Apps Script Webhook)
+				const ideaModal = document.getElementById("idea-modal");
+				const closeModalBtn = document.getElementById(
+					"close-idea-modal-btn"
+				);
+				const cancelModalBtn = document.getElementById(
+					"cancel-idea-modal-btn"
+				);
+				const ideaForm = document.getElementById("idea-form");
+				const ideaSubmitBtn =
+					document.getElementById("idea-submit-btn");
+				const ideaSubmitText =
+					document.getElementById("idea-submit-text");
+
+				function openIdeaModal() {
+					trackEvent("idea_modal_open");
+					ideaModal.classList.remove("hidden");
+					ideaModal.classList.add("flex");
+					document.body.style.overflow = "hidden";
+				}
+
+				function closeIdeaModal() {
+					ideaModal.classList.add("hidden");
+					ideaModal.classList.remove("flex");
+					document.body.style.overflow = "";
+				}
+
+				closeModalBtn.addEventListener("click", closeIdeaModal);
+				cancelModalBtn.addEventListener("click", closeIdeaModal);
+				ideaModal.addEventListener("click", (e) => {
+					if (e.target === ideaModal) closeIdeaModal();
+				});
+
+				ideaForm.addEventListener("submit", async (e) => {
+					e.preventDefault();
+					const title = document
+						.getElementById("idea-title")
+						.value.trim();
+					const desc = document
+						.getElementById("idea-desc")
+						.value.trim();
+					const sender = document
+						.getElementById("idea-sender")
+						.value.trim();
+
+					if (
+						!SITE_CONFIG.ideaWebhookUrl ||
+						!SITE_CONFIG.ideaWebhookUrl.trim()
+					) {
+						showToast(
+							"שליחת ההצעות אינה מוגדרת כרגע. פנו ישירות לועד המחזור.",
+							"warning"
+						);
+						return;
+					}
+
+					ideaSubmitBtn.disabled = true;
+					ideaSubmitText.textContent = "שולח לועד...";
+
+					try {
+						const response = await fetch(
+							SITE_CONFIG.ideaWebhookUrl.trim(),
+							{
+								method: "POST",
+								headers: {
+									"Content-Type": "text/plain;charset=utf-8",
+								},
+								body: JSON.stringify({
+									title,
+									desc,
+									sender: sender || "אנונימי",
+								}),
+							}
+						);
+
+						if (!response.ok) {
+							throw new Error(`HTTP ${response.status}`);
+						}
+
+						const result = await response
+							.json()
+							.catch(() => ({ status: "ok" }));
+						if (result && result.status === "error") {
+							throw new Error(result.message || "Server error");
+						}
+
+						trackEvent("idea_submitted", {
+							has_sender: Boolean(sender),
+						});
+
+						showToast(
+							`תודה! הפנייה "${title}" נשלחה ישירות לועד המחזור.`,
+							"success"
+						);
+						ideaForm.reset();
+						closeIdeaModal();
+					} catch (err) {
+						console.error("Webhook submission failed:", err);
+						showToast(
+							"אירעה שגיאה בשליחה האוטומטית. נסו שוב בעוד רגע.",
+							"warning"
+						);
+					} finally {
+						ideaSubmitBtn.disabled = false;
+						ideaSubmitText.textContent = "שליחת הצעה";
+					}
+				});
+
+				// 9. Embedded iFrame Viewer Modal
+				const iframeModal = document.getElementById("iframe-modal");
+				const iframeViewer = document.getElementById("iframe-viewer");
+				const iframeLoader = document.getElementById("iframe-loader");
+				const iframeTitleEl =
+					document.getElementById("iframe-modal-title");
+				const iframeUrlEl = document.getElementById("iframe-modal-url");
+				const iframeIconWrap = document.getElementById(
+					"iframe-modal-icon-wrap"
+				);
+				const iframeExternalLink = document.getElementById(
+					"iframe-external-link"
+				);
+				const iframeRefreshBtn =
+					document.getElementById("iframe-refresh-btn");
+				const iframeCloseBtn =
+					document.getElementById("iframe-close-btn");
+				let currentIframeUrl = "";
+				let currentIframeToolId = "";
+
+				function openIframeModal(tool) {
+					if (!tool.url) {
+						showToast("טרם הוגדר קישור עבור כלי זה.", "warning");
+						return;
+					}
+
+					const palette =
+						TOOL_COLOR_STYLES[tool.color] ||
+						TOOL_COLOR_STYLES.indigo;
+					currentIframeUrl = tool.url;
+					currentIframeToolId = tool.id;
+
+					iframeTitleEl.textContent = tool.title;
+					iframeUrlEl.textContent = tool.url;
+					iframeExternalLink.href = tool.url;
+
+					// Update toolbar icon and color styling
+					iframeIconWrap.className = `w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${palette.iconWrap}`;
+					iframeIconWrap.innerHTML = `<i data-lucide="${
+						tool.icon || "globe"
+					}" class="w-5 h-5"></i>`;
+					lucide.createIcons({ root: iframeIconWrap });
+
+					// Show loading overlay before setting iframe src
+					iframeLoader.classList.remove("hidden", "opacity-0");
+					iframeViewer.src = tool.url;
+
+					iframeModal.classList.remove("hidden");
+					iframeModal.classList.add("flex");
+					document.body.style.overflow = "hidden";
+				}
+
+				function closeIframeModal() {
+					iframeModal.classList.add("hidden");
+					iframeModal.classList.remove("flex");
+					document.body.style.overflow = "";
+					// Reset src to halt background media/scripts
+					iframeViewer.src = "about:blank";
+					currentIframeUrl = "";
+					currentIframeToolId = "";
+				}
+
+				// Track when a user clicks "Open in New Tab" inside the iFrame modal
+				iframeExternalLink.addEventListener("click", () => {
+					if (currentIframeUrl) {
+						trackEvent("iframe_open_external", {
+							tool_id: currentIframeToolId,
+							tool_title: iframeTitleEl.textContent,
+							tool_url: currentIframeUrl,
+						});
+					}
+				});
+
+				// Hide spinner once iframe finishes loading
+				iframeViewer.addEventListener("load", () => {
+					if (currentIframeUrl) {
+						iframeLoader.classList.add("opacity-0");
+						setTimeout(() => {
+							iframeLoader.classList.add("hidden");
+						}, 300);
+					}
+				});
+
+				// Reload iframe content on refresh click
+				iframeRefreshBtn.addEventListener("click", () => {
+					if (!currentIframeUrl) return;
+					iframeLoader.classList.remove("hidden", "opacity-0");
+					iframeViewer.src = currentIframeUrl;
+				});
+
+				iframeCloseBtn.addEventListener("click", closeIframeModal);
+				iframeModal.addEventListener("click", (e) => {
+					if (e.target === iframeModal) closeIframeModal();
+				});
+
+				// Global Escape key handler for open modals
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape") {
+						if (!iframeModal.classList.contains("hidden")) {
+							closeIframeModal();
+						} else if (!ideaModal.classList.contains("hidden")) {
+							closeIdeaModal();
+						}
+					}
+				});
+
+				// 10. Dynamic Bento Grid Renderer (from PORTAL_TOOLS)
+				function renderPortalTools() {
+					const sectionEl = document.getElementById("upcoming");
+					const gridEl = document.getElementById("tools-bento-grid");
+					const navLinks =
+						document.querySelectorAll(".tools-nav-link");
+
+					const visibleTools = PORTAL_TOOLS.filter(
+						(tool) => tool.visible === true
+					);
+					const shouldHideSection =
+						!SITE_CONFIG.showToolsSection ||
+						(visibleTools.length === 0 &&
+							!SITE_CONFIG.showIdeaCard);
+
+					if (shouldHideSection) {
+						sectionEl.classList.add("hidden");
+						navLinks.forEach((link) =>
+							link.classList.add("hidden")
+						);
+						return;
+					}
+
+					sectionEl.classList.remove("hidden");
+					navLinks.forEach((link) => link.classList.remove("hidden"));
+					gridEl.innerHTML = "";
+
+					let totalColSpan = 0;
+
+					// Build each visible tool card
+					visibleTools.forEach((tool) => {
+						const palette =
+							TOOL_COLOR_STYLES[tool.color] ||
+							TOOL_COLOR_STYLES.indigo;
+						const spanValue = COL_SPAN_CLASSES[tool.colSpan]
+							? tool.colSpan
+							: 3;
+						const spanClass = COL_SPAN_CLASSES[spanValue];
+						totalColSpan += spanValue;
+
+						const isUpcoming = tool.actionType === "upcoming";
+						const badgeClass = isUpcoming
+							? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200/70 dark:border-slate-700"
+							: palette.badge;
+
+						const card = document.createElement("div");
+						card.className = `${spanClass} group relative rounded-3xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between ${
+							isUpcoming ? "cursor-pointer" : ""
+						}`;
+
+						// Action footer markup based on actionType
+						let actionHtml = "";
+						if (tool.actionType === "iframe") {
+							actionHtml = `
+                            <div class="pt-5 mt-auto">
+                                <button type="button" data-tool-id="${
+									tool.id
+								}" class="open-iframe-tool-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md transition-all cursor-pointer active:scale-95 ${
+								palette.button
+							}">
+                                    <i data-lucide="app-window" class="w-4 h-4"></i>
+                                    <span>${
+										tool.buttonText || "פתח בתוך האתר"
+									}</span>
+                                </button>
+                            </div>
+                        `;
+						} else if (tool.actionType === "external") {
+							actionHtml = `
+                            <div class="pt-5 mt-auto">
+                                <a href="${
+									tool.url || "#"
+								}" target="_blank" rel="noopener noreferrer" class="open-external-tool-link w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md transition-all active:scale-95 ${
+								palette.button
+							}">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                    <span>${
+										tool.buttonText || "מעבר לאתר"
+									}</span>
+                                </a>
+                            </div>
+                        `;
+						} else {
+							actionHtml = `
+                            <div class="pt-5 mt-auto">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                    <span>${
+										tool.buttonText || "בפיתוח - יעלה בקרוב"
+									}</span>
+                                </span>
+                            </div>
+                        `;
+						}
+
+						card.innerHTML = `
+                        <div>
+                            <div class="flex items-start justify-between gap-3 mb-5">
+                                <div class="w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform ${
+									palette.iconWrap
+								}">
+                                    <i data-lucide="${
+										tool.icon || "sparkles"
+									}" class="w-6 h-6"></i>
+                                </div>
+                                ${
+									tool.badge
+										? `<span class="px-3 py-1 rounded-full text-xs font-semibold border ${badgeClass}">${tool.badge}</span>`
+										: ""
+								}
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                                ${tool.title}
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                ${tool.description}
+                            </p>
+                        </div>
+                        ${actionHtml}
+                    `;
+
+						// Attach click behavior + automatic GA4 tracking for every tool (current & future)
+						const trackToolClick = () => {
+							trackEvent("tool_click", {
+								tool_id: tool.id,
+								tool_title: tool.title,
+								action_type: tool.actionType,
+								tool_url: tool.url || "",
+							});
+						};
+
+						if (tool.actionType === "iframe") {
+							const btn = card.querySelector(
+								".open-iframe-tool-btn"
+							);
+							btn.addEventListener("click", () => {
+								trackToolClick();
+								openIframeModal(tool);
+							});
+						} else if (tool.actionType === "external") {
+							const link = card.querySelector(
+								".open-external-tool-link"
+							);
+							link.addEventListener("click", trackToolClick);
+						} else if (isUpcoming) {
+							card.addEventListener("click", () => {
+								trackToolClick();
+								showToast(
+									`הכלי "${tool.title}" עדיין בפיתוח ויעלה לאתר בהמשך.`,
+									"info"
+								);
+							});
+						}
+
+						gridEl.appendChild(card);
+					});
+
+					// Render the "Suggest an Idea" card if enabled
+					if (SITE_CONFIG.showIdeaCard) {
+						const remainder = totalColSpan % 6;
+						const ideaSpan = remainder === 0 ? 6 : 6 - remainder;
+						const ideaSpanClass =
+							COL_SPAN_CLASSES[ideaSpan] || "md:col-span-6";
+						const isWideBanner = ideaSpan === 6;
+
+						const ideaCard = document.createElement("div");
+						ideaCard.className = `${ideaSpanClass} group relative rounded-3xl bg-gradient-to-br from-indigo-600 via-blue-600 to-teal-600 p-6 sm:p-7 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35 hover:-translate-y-1 transition-all duration-300 flex ${
+							isWideBanner
+								? "flex-col md:flex-row md:items-center justify-between gap-6"
+								: "flex-col justify-between"
+						}`;
+
+						ideaCard.innerHTML = `
+                        <div class="${
+							isWideBanner
+								? "flex flex-col sm:flex-row sm:items-center gap-4"
+								: ""
+						}">
+                            <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center ${
+								isWideBanner ? "shrink-0" : "mb-5"
+							} border border-white/20">
+                                <i data-lucide="lightbulb" class="w-6 h-6 text-amber-300"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold mb-1.5">
+                                    יש לך תלונה? רעיון ליוזמה חדשה?
+                                </h3>
+                                <p class="text-sm text-indigo-100 leading-relaxed ${
+									isWideBanner ? "max-w-xl" : "mb-6"
+								}">
+                                    נתקלתם בבעיה חוזרת או שיש לכם רעיון לפיצ'ר שיעזור לכל המחזור? נשמח לשמוע ולעזור לכם!
+                                </p>
+                            </div>
+                        </div>
+                        <button id="open-idea-modal-btn" type="button" class="${
+							isWideBanner
+								? "w-full md:w-auto shrink-0 px-6"
+								: "w-full px-4"
+						} inline-flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-white text-indigo-700 hover:bg-indigo-50 shadow-sm transition-all cursor-pointer active:scale-95">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>הציעו רעיון לועד</span>
+                        </button>
+                    `;
+
+						ideaCard
+							.querySelector("#open-idea-modal-btn")
+							.addEventListener("click", openIdeaModal);
+						gridEl.appendChild(ideaCard);
+					}
+
+					// Initialize Lucide icons inside all dynamically generated cards
+					lucide.createIcons({ root: gridEl });
+				}
+
+				renderPortalTools();
+
+				// 11. Scroll-Reveal Animations via IntersectionObserver
+				const revealElements = document.querySelectorAll(".reveal");
+				const revealObserver = new IntersectionObserver(
+					(entries, observer) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("active");
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{
+						threshold: 0.12,
+						rootMargin: "0px 0px -40px 0px",
+					}
+				);
+
+				revealElements.forEach((el) => revealObserver.observe(el));
+			});
+		</script>
+	</body>
+</html>
